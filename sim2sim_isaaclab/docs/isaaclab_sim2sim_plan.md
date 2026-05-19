@@ -62,24 +62,42 @@ sim2sim_isaaclab/
 
 ### 操作
 
-在 Isaac Lab 目录下运行：
+先确认不要使用 `isaacgym` 环境运行 Isaac Lab。Isaac Lab 使用独立环境：
+
+```bash
+source /home/reality-hunger/miniconda3/etc/profile.d/conda.sh
+conda activate env_isaaclab
+```
+
+首次运行 Isaac Sim / Isaac Lab 时需要接受 NVIDIA Omniverse EULA。非交互命令建议直接设置环境变量：
+
+```bash
+export ACCEPT_EULA=Y
+export OMNI_KIT_ACCEPT_EULA=yes
+```
+
+在 Isaac Lab 目录下运行空场景：
 
 ```bash
 cd /home/reality-hunger/IsaacLab
+ACCEPT_EULA=Y OMNI_KIT_ACCEPT_EULA=yes \
+CONDA_PREFIX=/home/reality-hunger/miniconda3/envs/env_isaaclab \
 ./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py --headless
 ```
 
 ### 验收标准
 
 - Isaac Lab 能正常启动。
+- 输出中 Python 路径应为 `env_isaaclab`，不是 `isaacgym`。
 - 脚本无 import error。
-- 能正常退出或手动 Ctrl-C 退出。
+- `create_empty.py` 会持续运行；看到 Isaac Lab 日志和 headless kit 加载成功即可，手动 Ctrl-C 退出。
 
 ### 可能问题
 
 - Isaac Sim / Isaac Lab 环境变量未配置。
 - GPU / display / headless 参数问题。
 - Python 环境不是 Isaac Lab 自带环境。
+- 未接受 EULA 时会出现 `Do you accept the EULA?` 或 `Unable to bootstrap inner kit kernel`。
 
 ## 五、阶段 2：加载 RoboDuet URDF
 
