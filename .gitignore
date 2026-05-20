@@ -84,3 +84,6 @@ __pycache__
 
 # Local archives/backups
 *.zip
+
+# Local sim2sim diagnostics
+outputs/

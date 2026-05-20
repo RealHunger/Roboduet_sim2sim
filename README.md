@@ -5,7 +5,7 @@
 
 本仓库基于原始 RoboDuet 项目整理，并保留官方 IsaacGym 训练代码以保证兼容性。
 
-我提交的主要工作集中在 `sim2sim_mujoco/` 目录下，包括 IsaacGym-to-MuJoCo 的 sim2sim 流程、对比验证工具，以及 MuJoCo 专用模型资源整理。
+我提交的主要工作集中在 `sim2sim_mujoco/` 和 `sim2sim_isaacsim/` 目录下，包括 IsaacGym-to-MuJoCo、IsaacGym-to-IsaacSim 的 sim2sim 流程、对比验证工具，以及对应模型资源整理。
 
 RoboDuet 的核心训练方法、策略结构和原始 IsaacGym 实现归原作者所有。项目原始介绍请参考论文和官方项目主页。
 
@@ -74,6 +74,30 @@ Quick start:
 ```bash
 cd RoboDuet-master
 python sim2sim_mujoco/scripts/mujoco_policy_rollout.py --interactive-baseline
+```
+
+### Isaac Sim Sim2Sim Extension
+
+The Isaac Sim / IsaacLab sim2sim extension is organized separately under:
+
+```text
+sim2sim_isaacsim/
+```
+
+It includes the converted USD robot asset, Isaac Sim replay/probe scripts, GUI keyboard control, scripted sequence replay, and red/blue arm target markers. Detailed usage is documented in `sim2sim_isaacsim/docs/isaacsim_sim2sim.md`.
+
+Quick start:
+
+```bash
+cd RoboDuet-master
+conda activate isaaclab
+python sim2sim_isaacsim/scripts/isaacsim_replay_sequence.py --interactive-baseline
+```
+
+Scripted sequence replay:
+
+```bash
+python sim2sim_isaacsim/scripts/isaacsim_replay_sequence.py --sequence-baseline --loop-sequence
 ```
 
 ### Train
